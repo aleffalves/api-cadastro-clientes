@@ -1,0 +1,11 @@
+server:
+  error:
+    include-message: always
+spring:
+  jpa:
+    database: POSTGRESQL
+    show-sql: true
+  datasource:
+    url: jdbc:postgresql://localhost:5432/clientes
+    username: postgres
+    password: password
