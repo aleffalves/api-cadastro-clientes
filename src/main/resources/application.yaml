@@ -4,6 +4,7 @@ server:
 spring:
   jpa:
     database: POSTGRESQL
+    hibernate.ddl-auto: update
     show-sql: true
   datasource:
     url: jdbc:postgresql://localhost:5432/clientes
