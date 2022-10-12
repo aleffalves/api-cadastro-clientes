@@ -62,7 +62,7 @@ public class ClienteServiceImpl implements ClienteService {
             List<ClienteDTO> clienteDTOS = new ArrayList<>();
 
             if(clientes.isEmpty()){
-                throw new ResponseStatusException(HttpStatus.OK, "Nenhum cliente encontrado!");
+                return null;
             }
 
             for(Cliente cliente : clientes){
