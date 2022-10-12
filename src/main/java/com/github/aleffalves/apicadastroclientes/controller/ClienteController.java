@@ -21,7 +21,7 @@ public class ClienteController {
     @PostMapping()
     public ResponseEntity<?> cadastrar(@RequestBody ClienteDTO cliente){
         clienteService.cadastrar(cliente);
-        return ResponseEntity.status(HttpStatus.OK).body("Cliente cadastrado com sucesso!");
+        return ResponseEntity.ok().build();
     }
 
     @GetMapping("/todos")
@@ -37,13 +37,13 @@ public class ClienteController {
     @GetMapping("/desativar/{id}")
     public ResponseEntity<?> desativarCliente(@PathVariable("id") Integer id){
         clienteService.desativar(id);
-        return ResponseEntity.status(HttpStatus.OK).body("Cliente desativado com sucesso!");
+        return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/excluir/{id}")
     public ResponseEntity<?> excluirCliente(@PathVariable("id") Integer id){
         clienteService.excluirCliente(id);
-        return ResponseEntity.status(HttpStatus.OK).body("Cliente excluido com sucesso!");
+        return ResponseEntity.ok().build();
     }
 
 }

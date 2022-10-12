@@ -19,18 +19,18 @@ public class ClienteTelefoneController {
     @PostMapping()
     public ResponseEntity<?> salvar(@RequestBody ClienteTelefoneDTO clienteTelefoneDTO){
         clienteTelefoneService.salvar(clienteTelefoneDTO);
-        return ResponseEntity.status(HttpStatus.OK).body("Telefone salvo com sucesso!");
+        return ResponseEntity.ok().build();
     }
 
     @PutMapping()
     public ResponseEntity<?> atualizar(@RequestBody ClienteTelefoneDTO clienteTelefoneDTO, @PathVariable Integer id){
         clienteTelefoneService.atualizar(clienteTelefoneDTO, id);
-        return ResponseEntity.status(HttpStatus.OK).body("Telefone atualizado com sucesso!");
+        return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deletar(@PathVariable Integer id){
         clienteTelefoneService.deletar(id);
-        return ResponseEntity.status(HttpStatus.OK).body("Telefone deletado com sucesso!");
+        return ResponseEntity.ok().build();
     }
 }
