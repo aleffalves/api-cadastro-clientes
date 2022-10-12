@@ -53,17 +53,25 @@ public class ClienteTelefoneServiceImpl implements ClienteTelefoneService {
     }
 
     @Override
-    public void atualizar(ClienteTelefoneDTO telefoneDTO, Integer id) {
-            Optional<ClienteTelefone> clienteTelefone = clienteTelefoneRepository.findById(id);
-            if(clienteTelefone.isEmpty()){
-                throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Telefone não encontrado!");
+    public void atualizar(List<ClienteTelefoneDTO> telefoneDTO, Integer idCliente) {
+
+        for(ClienteTelefoneDTO clienteTelefoneDTO : telefoneDTO) {
+            if(clienteTelefoneDTO.getId() != null) {
+                Optional<ClienteTelefone> clienteTelefone = clienteTelefoneRepository.findById(clienteTelefoneDTO.getId());
+                if (clienteTelefone.isEmpty()) {
+                    throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Telefone não encontrado!");
+                }
+                try {
+                    clienteTelefone.get().setTelefone(clienteTelefoneDTO.getTelefone());
+                    clienteTelefoneRepository.saveAndFlush(clienteTelefone.get());
+                } catch (RuntimeException e) {
+                    throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Erro ao tentar atualizar telefone", e);
+                }
+            }else {
+                clienteTelefoneDTO.setClienteId(idCliente);
+                clienteTelefoneRepository.saveAndFlush(clienteTelefoneMapper.toEntity(clienteTelefoneDTO));
             }
-            try {
-                clienteTelefone.get().setTelefone(telefoneDTO.getTelefone());
-                clienteTelefoneRepository.saveAndFlush(clienteTelefone.get());
-            }catch (RuntimeException e){
-                throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Erro ao tentar atualizar telefone", e);
-            }
+        }
     }
 
     @Override

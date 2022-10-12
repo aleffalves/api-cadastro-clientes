@@ -13,7 +13,7 @@ public interface ClienteTelefoneService {
 
     void excluirTodosPorCliente(Integer idCliente);
 
-    void atualizar(ClienteTelefoneDTO telefone, Integer idCliente);
+    void atualizar(List<ClienteTelefoneDTO> telefone, Integer idCliente);
 
     void deletar(Integer id);
 }

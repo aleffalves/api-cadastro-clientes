@@ -2,9 +2,10 @@ package com.github.aleffalves.apicadastroclientes.controller;
 
 import com.github.aleffalves.apicadastroclientes.model.dto.ClienteTelefoneDTO;
 import com.github.aleffalves.apicadastroclientes.service.ClienteTelefoneService;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/cliente-telefone")
@@ -22,9 +23,9 @@ public class ClienteTelefoneController {
         return ResponseEntity.ok().build();
     }
 
-    @PutMapping()
-    public ResponseEntity<?> atualizar(@RequestBody ClienteTelefoneDTO clienteTelefoneDTO, @PathVariable Integer id){
-        clienteTelefoneService.atualizar(clienteTelefoneDTO, id);
+    @PutMapping("/atualizar/{idCliente}")
+    public ResponseEntity<?> atualizar(@RequestBody List<ClienteTelefoneDTO> clienteTelefoneDTO, @PathVariable("idCliente") Integer idCliente){
+        clienteTelefoneService.atualizar(clienteTelefoneDTO, idCliente);
         return ResponseEntity.ok().build();
     }
 
